@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 class StudentServiceTest {
@@ -37,5 +39,22 @@ class StudentServiceTest {
 
         assertThat(studentService.getAllStudents()).hasSameElementsAs(expected);
 
+    }
+
+    @Test
+    void validateStudent() {
+        StudentService expected = new StudentService();
+        boolean validateStudent = expected.validateStudent("reema@gmail.com", "password");
+
+        assertTrue(validateStudent);
+    }
+
+   @Test
+    void getStudentByEmail() {
+        StudentService ss= new StudentService();
+        Student expected;
+        expected = ss.getStudentByEmail("reema@gmail.com");
+
+        assertEquals("reema brown", expected.getName());
     }
 }
